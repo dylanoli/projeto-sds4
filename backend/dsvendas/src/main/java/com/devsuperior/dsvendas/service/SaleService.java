@@ -22,10 +22,12 @@ public class SaleService {
     @Autowired
     private SellerRepository sellerRepository;
 
+    @Transactional(readOnly = true)
     public List<SaleDTO> findAll() {
         var result = saleRepository.findAll();
         return result.stream().map(x -> new SaleDTO(x)).collect(Collectors.toList());
     }
+    
     @Transactional(readOnly = true)
     public Page<SaleDTO> findAll(Pageable pageable) {
         sellerRepository.findAll();
