@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
-import { SaleSun } from 'types/SaleSun';
+import { SaleSum } from 'types';
 import { BASE_URL } from 'utils/requests';
 
 type ChartData = {
@@ -14,7 +14,7 @@ function DonutChart() {
     useEffect(()=>{
         axios.get(BASE_URL + '/sellers/sum-by-seller')
         .then((response) => {
-            const data = response.data as SaleSun[];
+            const data = response.data as SaleSum[];
             const labels = data.map(x=>x.sellerName);
             const series = data.map(x=> x.sum);
             setChartData({labels,series})
